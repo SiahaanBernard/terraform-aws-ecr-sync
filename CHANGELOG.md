@@ -2,6 +2,3 @@
 
 RELEASE NOTES:
 - First Release of system for synchronize container images to ECR.
-
-
-

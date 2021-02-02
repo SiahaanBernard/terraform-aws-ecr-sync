@@ -28,11 +28,13 @@ resource "aws_codebuild_project" "sync" {
   description   = "Codebuild to sync container image for ${var.container_image_name}."
   build_timeout = var.codebuild_timeout
   service_role  = module.aws-iam-role_codebuild.role_arn
+
   environment {
     compute_type                = var.codebuild_compute_type
     image                       = var.codebuild_image
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
+    privileged_mode             = true
   }
   artifacts {
     type = "NO_ARTIFACTS"
@@ -45,7 +47,7 @@ resource "aws_codebuild_project" "sync" {
   source {
     type            = "CODECOMMIT"
     location        = data.aws_codecommit_repository.source.clone_url_http
-    buildspec       = "buildspec_build.yml"
+    buildspec       = "buildspec.yml"
     git_clone_depth = "0"
 
     insecure_ssl = "false"

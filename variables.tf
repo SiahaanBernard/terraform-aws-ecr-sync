@@ -28,7 +28,7 @@ variable "codebuild_compute_type" {
 variable "codebuild_image" {
   description = "Type of image that will be used to run build job."
   type        = string
-  default     = "aws/codebuild/standard:5.0"
+  default     = "aws/codebuild/standard:4.0"
 }
 
 variable "ecr_repo_arn" {

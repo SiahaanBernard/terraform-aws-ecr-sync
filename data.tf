@@ -12,10 +12,24 @@ data "aws_iam_policy_document" "codebuild" {
       "ecr:DescribeRepositories",
       "ecr:ListImages",
       "ecr:PutImage",
-      "ecr:BatchGetImage"
+      "ecr:BatchGetImage",
+      "ecr:InitiateLayerUpload",
+      "ecr:UploadLayerPart",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:CompleteLayerUpload"
     ]
     resources = [
       var.ecr_repo_arn
+    ]
+  }
+  statement {
+    sid    = "AllowToGetAuthToken"
+    effect = "Allow"
+    actions = [
+      "ecr:GetAuthorizationToken"
+    ]
+    resources = [
+      "*"
     ]
   }
   statement {
@@ -26,11 +40,19 @@ data "aws_iam_policy_document" "codebuild" {
       "logs:PutLogEvents"
     ]
     resources = [
-      "${aws_cloudwatch_log_group.codebuild.arn}/*"
+      "${aws_cloudwatch_log_group.codebuild.arn}*"
     ]
   }
   statement {
+    sid    = "AllowCodeCommit"
+    effect = "Allow"
+    actions = [
+      "codecommit:*"
+    ]
 
+    resources = [
+      "*"
+    ]
   }
 }
 

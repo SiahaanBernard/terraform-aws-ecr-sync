@@ -42,7 +42,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | codebuild\_compute\_type | Type of compute or spec for codebuild. | `string` | `"BUILD_GENERAL1_SMALL"` | no |
-| codebuild\_image | Type of image that will be used to run build job. | `string` | `"aws/codebuild/standard:5.0"` | no |
+| codebuild\_image | Type of image that will be used to run build job. | `string` | `"aws/codebuild/standard:4.0"` | no |
 | codebuild\_schedule\_expression | Cron expression to set scheduled trigger for codebuild. Leave it empty to disable | `string` | `""` | no |
 | codebuild\_timeout | Timeout for codebuild in minutes | `string` | `"120"` | no |
 | container\_image\_name | Name of the container images to be sync. | `string` | n/a | yes |

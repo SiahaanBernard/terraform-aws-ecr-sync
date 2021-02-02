@@ -37,7 +37,3 @@ module "ecr_sync" {
   container_image_name          = "datadog"
   codebuild_schedule_expression = "cron(0 22 ? * 1 *)" # every Monday at 05:00 AM UTC+7
 }
-
-output "repo_name" {
-  value = aws_codecommit_repository.git.repository_id
-}
